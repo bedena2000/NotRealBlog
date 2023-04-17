@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100vh;
+}
+
+body {
+    min-height: 100vh;
+    font-size: 16px;
+    background-color: #ececec;
+    font-family: 'Tilt Prism', cursive;
+    font-family: 'Mukta', sans-serif;
+    padding: 10px;
+}
+
+
+/* Home Page */
+.home__hometitle {
+    text-align: center;
+    font-size: 32px;
+    margin-top: 100px;
+    font-family: 'Tilt Prism', cursive;
+}
+
+.home__homedescription {
+    text-align: center;
+    font-size: 16px;
+    color: cadetblue;
+}
+
+.home-loginWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+}
+
+.home-loginWrapper h2 {
+    font-family: 'Mukta';
+}
+
+.home-loginForm button {
+    width: 100%;
+    padding: 0px;
+}
+
+.home-loginForm button a {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+    display: block;
+    padding: 8px 0px;
+}
+
+.register-btn {
+    margin-top: 10px;
+    background-color: green;
+    margin-bottom: 10px;
+}
+
+.login-btn {
+    background-color: #0d6efd;
+}
+
+    /* Home Page MediaQueries */
+
+
+        /* 500px */
+        @media only screen and (min-width: 500px) {
+            .home-loginForm {
+                width: 400px;
+                margin: 0 auto;
+            }      
+        }
+        /* 500px */
+    
+        /* 765px */
+        @media only screen and (min-width: 765px) {
+            .home__hometitle {
+                font-weight: bold;
+                font-size: 44px;
+            }
+        }
+        /* 765px */
+
+        /* 1024px */
+        @media only screen and (min-width: 765px) {
+            .home__hometitle {
+                font-weight: bold;
+                font-size: 64px;
+            }
+        }
+        /* 1024px */
+
+    /* Home Page MediaQueries */
+    
+/* Home Page */
