@@ -1,4 +1,10 @@
-
+<?php 
+    session_start();
+    $emailCorrect = $_SESSION['incorrect-email-type'];
+    $userLoged = $_SESSION['user-logged'];
+    $passwordMatch = $_SESSION['user-password-match'];
+    $passwordLength = $_SESSION['password-length-error'];
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,26 +34,50 @@
 
     <div class="home-loginWrapper">
         
-    <form class="home-loginForm">
+    <form action="../authorization/registration.php" method="post" class="home-loginForm">
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            <input name="user-registered-email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <?php 
+                if($emailCorrect) {
+                    echo "<p class='error-message'>INCORRECT EMAIL FORMAT, PLEASE USE @GMAIL.COM</p>";
+                };
+                echo "<div id='emailHelp' class='form-text'>We'll never share your email with anyone else.</div>";
+                unset($_SESSION['incorrect-email-type']);
+            ?>
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
+            <input name="user-registered-password" type="password" class="form-control" id="exampleInputPassword1">
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
+            <input name="user-registered-password-again" type="password" class="form-control" id="exampleInputPassword1">
+            <p class="length-password">
+                length of the password should be more than 6
+            </p>
+            <?php
+                if($passwordMatch) {
+                    echo "<p class='error-message'>password are not matched</p>";
+                } elseif($passwordLength) {
+                    echo "<p class='error-message'>password length is not correct, you should use more than 6 symbols</p>";
+                };
+                unset($_SESSION['user-password-match']);
+                unset($_SESSION['password-length-error']);
+            ?>
         </div>
-        <button type="submit" class="btn btn-primary register-btn">
-            <a href="#">Register</a>
+        <button type="submit" class="btn btn-primary register-btn-individual">
+            Register
         </button>
-        <button type="submit" class="btn btn-primary login-btn">
+        <button class="btn btn-primary">
             <a href="../index.php">Login</a>
         </button>
+        <?php 
+            if($userLoged) {
+                echo "<p class='error-message'>user with this email already exists</p>";
+            };
+            unset($_SESSION['user-logged']);
+        ?>
     </form>
 
     </div>

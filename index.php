@@ -1,3 +1,10 @@
+<?php 
+    session_start();
+    if($_SESSION['user-logged']) {
+        header("Location: pages/main.php");
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,23 +33,47 @@
 
     <div class="home-loginWrapper">
         
-    <form class="home-loginForm">
+    <form action="authorization/login.php" method="post" class="home-loginForm">
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            <input name="user-email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required="false">
+            <div id="emailHelp" class="form-text">Note: (You can login and register only with gmail.com)</div>
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
+            <input name="user-password" type="password" class="form-control" id="exampleInputPassword1">
+            <p class="form-text">length of the password should be more than 6</p>
+            <?php 
+                
+                $passwordErrorMessage = $_SESSION['error-password-msg'];
+                if($passwordErrorMessage) {
+                    echo "<p class='invalid-password'>
+                             invalid password type
+                        </p>";
+                };
+                unset($_SESSION['error-password-msg']);
+
+            ?>
         </div>
-        <button type="submit" class="btn btn-primary login-btn">
-            <a href="#">Login</a>
+            <!-- <input class="home-login-btn" type="submit" value="Login"> -->
+        <button type="submit" class="login-btn btn btn-primary">
+            Login
         </button>
-        <button type="submit" class="btn btn-primary register-btn">
+        <button class="btn btn-primary register-btn">
             <a href="pages/register.php">Register</a>
         </button>
+        <?php
+            $account = $_SESSION['user-not-found'];
+            if($account) {
+                echo "<p class='invalid-password'>
+                    user not found
+                </p>";
+            };
+            unset($_SESSION['user-not-found']);
+        ?>
     </form>
+
+    
 
     </div>
     
